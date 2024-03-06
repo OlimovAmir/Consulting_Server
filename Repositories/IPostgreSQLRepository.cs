@@ -1,6 +1,8 @@
-﻿namespace Consulting_Server.Repositories
+﻿using Consulting_Server.Models.BaseModels;
+
+namespace Consulting_Server.Repositories
 {
-    public interface IPostgreSQLRepository
+    public interface IPostgreSQLRepository<T> where T : BaseEntity
     {
     }
 }
