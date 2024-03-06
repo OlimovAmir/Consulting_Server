@@ -2,6 +2,7 @@
 using Consulting_Server.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using System.Text.Json.Serialization;
 
 namespace Consulting_Server
 {
@@ -25,9 +26,14 @@ namespace Consulting_Server
                 //l.ClearProviders();
                 //l.AddConsole();
             });
+
+
+
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+           .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
