@@ -52,8 +52,16 @@ namespace Consulting_Server
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<MemoryContext>();
+                context.Database.Migrate();
+
+
+
+            }
+                // Configure the HTTP request pipeline.
+                if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
