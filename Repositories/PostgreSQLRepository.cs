@@ -28,7 +28,20 @@ namespace Consulting_Server.Repositories
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var item = _context.Set<T>().SingleOrDefault(w => w.Id == id);
+                if (item is not null)
+                {
+                    _context.Remove(item);
+                    var result = _context.SaveChanges();
+                    return result > 0;
+                }
+            }
+            catch
+            { }
+
+            return false;
         }
 
         public IQueryable<T> GetAll()
