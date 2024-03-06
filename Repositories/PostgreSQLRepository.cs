@@ -11,9 +11,19 @@ namespace Consulting_Server.Repositories
         {
             _context = bankContext;
         }
+
         public bool Create(T item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Add(item);
+                var result = _context.SaveChanges();
+                return result > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool Delete(Guid id)
