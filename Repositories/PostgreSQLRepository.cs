@@ -1,9 +1,11 @@
-﻿using Consulting_Server.Models.BaseModels;
+﻿using Consulting_Server.Infrastructure;
+using Consulting_Server.Models.BaseModels;
 
 namespace Consulting_Server.Repositories
 {
     public class PostgreSQLRepository<T> : IPostgreSQLRepository<T> where T : BaseEntity
     {
+        readonly MemoryContext _context;
         public bool Create(T item)
         {
             throw new NotImplementedException();
