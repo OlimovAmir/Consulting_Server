@@ -6,6 +6,11 @@ namespace Consulting_Server.Repositories
     public class PostgreSQLRepository<T> : IPostgreSQLRepository<T> where T : BaseEntity
     {
         readonly MemoryContext _context;
+
+        public PostgreSQLRepository(MemoryContext bankContext)
+        {
+            _context = bankContext;
+        }
         public bool Create(T item)
         {
             throw new NotImplementedException();
