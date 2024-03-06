@@ -1,4 +1,8 @@
 
+using Consulting_Server.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+
 namespace Consulting_Server
 {
     public class Program
@@ -7,6 +11,20 @@ namespace Consulting_Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            NpgsqlConnection.GlobalTypeMapper.EnableDynamicJson();
+
+            builder.Services.AddDbContext<MemoryContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DbPostgres"))
+
+                  //.UseLazyLoadingProxies()
+            .LogTo(Console.Write, LogLevel.Information)
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+            builder.Services.AddLogging(l =>
+            {
+                //l.ClearProviders();
+                //l.AddConsole();
+            });
             // Add services to the container.
 
             builder.Services.AddControllers();
