@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Consulting_Server.Models.BaseModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Consulting_Server.Infrastructure
 {
@@ -9,5 +10,16 @@ namespace Consulting_Server.Infrastructure
             Database.Migrate();
             Database.EnsureCreated();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<BaseEntity>();
+
+
+
+            base.OnModelCreating(modelBuilder);
+
+        }
+
     }
 }
