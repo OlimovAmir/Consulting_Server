@@ -46,7 +46,7 @@ namespace Consulting_Server.Repositories
 
         public IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Set<T>();
         }
 
         public T GetById(Guid id)
