@@ -1,6 +1,9 @@
-﻿namespace Consulting_Server.Infrastructure
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Consulting_Server.Infrastructure
 {
-    public class MemoryContext
+    public class MemoryContext : DbContext
     {
+
     }
 }
