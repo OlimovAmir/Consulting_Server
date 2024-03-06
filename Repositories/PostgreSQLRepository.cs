@@ -51,7 +51,7 @@ namespace Consulting_Server.Repositories
 
         public T GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().SingleOrDefault(w => w.Id == id);
         }
 
         public bool Update(T item)
