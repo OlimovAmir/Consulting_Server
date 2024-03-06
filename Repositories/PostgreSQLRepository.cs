@@ -56,7 +56,16 @@ namespace Consulting_Server.Repositories
 
         public bool Update(T item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Update(item);
+                var result = _context.SaveChanges();
+                return result > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
