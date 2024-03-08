@@ -23,7 +23,7 @@ namespace Consulting_Server.Services
 
         public IQueryable<MessageFromUser> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public MessageFromUser GetById(Guid id)
