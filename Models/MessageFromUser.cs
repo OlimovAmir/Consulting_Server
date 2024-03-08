@@ -11,7 +11,7 @@ namespace Consulting_Server.Models
             using (var smtpClient = new SmtpClient("smtp.example.com"))
             {
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("your_smtp_username", "your_smtp_password");
+                smtpClient.Credentials = new NetworkCredential("olimov.amir@mail.ru", "R927354555");
                 smtpClient.EnableSsl = true;
 
                 using (var message = new MailMessage())
