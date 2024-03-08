@@ -28,7 +28,7 @@ namespace Consulting_Server.Services
 
         public MessageFromUser GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id);
         }
 
         public string Update(Guid id, MessageFromUser item)
