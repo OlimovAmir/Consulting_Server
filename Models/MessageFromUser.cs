@@ -7,8 +7,11 @@ namespace Consulting_Server.Models
 {
     public class MessageFromUser: BaseEntity
     {
+        public string TextMessage { get; set; }
+        //var email = new MimeMessage();
         public void SendEmail(string recipientEmail, string messageBody)
         {
+
             try
             {
                 using (var smtpClient = new SmtpClient("smtp.example.com"))
