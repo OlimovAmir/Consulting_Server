@@ -1,6 +1,7 @@
 ﻿using Consulting_Server.Models.BaseModels;
 using System.Net;
 using System.Net.Mail;
+using System;
 
 namespace Consulting_Server.Models
 {
@@ -8,19 +9,27 @@ namespace Consulting_Server.Models
     {
         public void SendEmail(string recipientEmail, string messageBody)
         {
-            using (var smtpClient = new SmtpClient("smtp.example.com"))
+            try
             {
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("olimov.amir@mail.ru", "R927354555");
-                smtpClient.EnableSsl = true;
-
-                using (var message = new MailMessage())
+                using (var smtpClient = new SmtpClient("smtp.example.com"))
                 {
-                    message.To.Add(recipientEmail);
-                    message.Body = messageBody;
+                    smtpClient.Port = 587;
+                    smtpClient.Credentials = new NetworkCredential("your_smtp_username", "your_smtp_password");
+                    smtpClient.EnableSsl = true;
 
-                    smtpClient.Send(message);
+                    using (var message = new MailMessage())
+                    {
+                        message.To.Add(recipientEmail);
+                        message.Body = messageBody;
+
+                        smtpClient.Send(message);
+                        Console.WriteLine("Email sent successfully to: " + recipientEmail);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error sending email: " + ex.Message);
             }
         }
     }
