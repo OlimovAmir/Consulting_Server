@@ -1,33 +1,34 @@
 ﻿using Consulting_Server.Models.BaseModels;
-using System.Net;
-using System.Net.Mail;
+using MailKit.Net.Smtp;
 using System;
+using MimeKit;
 
 namespace Consulting_Server.Models
 {
     public class MessageFromUser: BaseEntity
     {
         public string TextMessage { get; set; }
-        //var email = new MimeMessage();
+
         public void SendEmail(string recipientEmail, string messageBody)
         {
-
             try
             {
-                using (var smtpClient = new SmtpClient("smtp.example.com"))
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Your Name", "your_email@example.com")); // Вам нужно указать ваше имя и ваш электронный адрес
+                message.To.Add(new MailboxAddress("", recipientEmail));
+                message.Subject = ""; // Тема письма (по вашему требованию не используется)
+                message.Body = new TextPart("plain")
                 {
-                    smtpClient.Port = 587;
-                    smtpClient.Credentials = new NetworkCredential("your_smtp_username", "your_smtp_password");
-                    smtpClient.EnableSsl = true;
+                    Text = messageBody
+                };
 
-                    using (var message = new MailMessage())
-                    {
-                        message.To.Add(recipientEmail);
-                        message.Body = messageBody;
-
-                        smtpClient.Send(message);
-                        Console.WriteLine("Email sent successfully to: " + recipientEmail);
-                    }
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.example.com", 587, false); // Вам нужно указать SMTP сервер и порт
+                    client.Authenticate("your_smtp_username", "your_smtp_password"); // Вам нужно указать ваше имя пользователя и пароль
+                    client.Send(message);
+                    client.Disconnect(true);
+                    Console.WriteLine("Email sent successfully to: " + recipientEmail);
                 }
             }
             catch (Exception ex)
