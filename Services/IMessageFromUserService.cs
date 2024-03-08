@@ -4,5 +4,6 @@ namespace Consulting_Server.Services
 {
     public interface IMessageFromUserService : IBaseService<MessageFromUser>
     {
+
     }
 }
