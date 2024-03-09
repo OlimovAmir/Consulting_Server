@@ -8,7 +8,11 @@ namespace Consulting_Server.Models
     public class MessageFromUser: BaseEntity
     {
         public string TextMessage { get; set; }
-
+        public DateTime? Date { get; set; }
+        public MessageFromUser(string textMessage)
+        {
+            
+        }
         public void SendEmail(string recipientEmail, string messageBody)
         {
             try
