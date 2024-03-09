@@ -2,6 +2,7 @@
 using MailKit.Net.Smtp;
 using System;
 using MimeKit;
+using System.Xml.Linq;
 
 namespace Consulting_Server.Models
 {
@@ -9,6 +10,7 @@ namespace Consulting_Server.Models
     {
         public string TextMessage { get; set; }
         public DateTime? Date { get; set; }
+
         public MessageFromUser(string textMessage, DateTime? date)
         {
 
@@ -17,10 +19,13 @@ namespace Consulting_Server.Models
 
         }
 
-        public MessageFromUser()
+        public MessageFromUser() { }
+
+        public override string ToString()
         {
-            
+            return $"{TextMessage}  {Date} ";
         }
+
         public void SendEmail(string recipientEmail, string messageBody)
         {
             try
