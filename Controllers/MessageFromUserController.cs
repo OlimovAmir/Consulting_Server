@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Consulting_Server.Models;
+using Consulting_Server.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Consulting_Server.Controllers
 {
-    public class MessageFromUserController : Controller
+    public class MessageFromUserController : BaseController<MessageFromUser>
     {
-        public IActionResult Index()
+        public MessageFromUserController(ILogger<MessageFromUserController> logger, IMessageFromUserService service) : base(logger, service)
         {
-            return View();
         }
     }
 }
