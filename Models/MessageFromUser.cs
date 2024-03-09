@@ -9,7 +9,15 @@ namespace Consulting_Server.Models
     {
         public string TextMessage { get; set; }
         public DateTime? Date { get; set; }
-        public MessageFromUser(string textMessage)
+        public MessageFromUser(string textMessage, DateTime? date)
+        {
+
+            Date = date;
+            TextMessage = textMessage;
+
+        }
+
+        public MessageFromUser()
         {
             
         }
