@@ -1,5 +1,6 @@
 
 using Consulting_Server.Infrastructure;
+using Consulting_Server.Repositories;
 using Consulting_Server.Services;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
@@ -50,6 +51,8 @@ namespace Consulting_Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped(typeof(IPostgreSQLRepository<>), typeof(PostgreSQLRepository<>));
 
             var app = builder.Build();
 
