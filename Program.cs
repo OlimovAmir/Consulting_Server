@@ -56,6 +56,8 @@ namespace Consulting_Server
 
             var app = builder.Build();
 
+
+
             using (var scope = app.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetService<MemoryContext>();
@@ -71,6 +73,7 @@ namespace Consulting_Server
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("AllowLocalhost"); // Применяем CORS middleware
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
